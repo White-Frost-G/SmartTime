@@ -19,30 +19,35 @@ namespace SmartTime.Services
             if (!File.Exists(filePath)){
                 FirstTimeOpen();
             }
-
             string data = File.ReadAllText(filePath);
             Config = JsonConvert.DeserializeObject<Config>(data);
         }
 
         private static void FirstTimeOpen()
         {
-            //Create AutoStart ShortCut
-            string autoStartPath =Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "Programs\\Startup", "SmartTime.lnk");
+            string workingDir = AppDomain.CurrentDomain.BaseDirectory;
             object shDesktop = (object)"Desktop";
             WshShell shell = new WshShell();
-
+            //Create AutoStart ShortCut
+            string autoStartPath =Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "Programs\\Startup", "SmartTime.lnk");
+            
             IWshShortcut AutoShortcut = (IWshShortcut)shell.CreateShortcut(autoStartPath);
+            AutoShortcut.WorkingDirectory = workingDir;
             AutoShortcut.TargetPath = AppDomain.CurrentDomain.BaseDirectory + @"\SmartTime.exe";
             AutoShortcut.Arguments = "withoutUI";
             AutoShortcut.Save();
 
+
+
             //Create ShortCut in desktop
             string desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "SmartTime.lnk");
             
-           
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(desktopPath);
+            shortcut.WorkingDirectory = workingDir;
             shortcut.TargetPath = AppDomain.CurrentDomain.BaseDirectory + @"\SmartTime.exe";
             shortcut.Save(); 
+
+
             Save();
         }
 

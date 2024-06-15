@@ -91,7 +91,8 @@ namespace SmartTime.View
             // Display OpenFileDialog by calling ShowDialog method 
             dlg.ShowDialog();
 
-
+            if (dlg.FileName.Length <= 0)
+                return;
             // Open document 
             string filename = dlg.FileName.Substring(dlg.FileName.LastIndexOf("\\")+1);
             filename = filename.Substring(0,filename.IndexOf("."));

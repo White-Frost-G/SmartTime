@@ -8,7 +8,6 @@ using System.Windows;
 
 namespace SmartTime
 {
-
     public partial class MainWindow : Window
     {
         public MainView mainView;
@@ -38,13 +37,12 @@ namespace SmartTime
             // Display the arguments
             if (args.Length > 1 && args[1] == "withoutUI")
             {
-                MessageBox.Show($"Argument : {args[1]}", "Command-line Argument");
+                //MessageBox.Show($"Argument : {args[1]}", "Command-line Argument");
                 this.Hide();
             }
             else
             {
-                MessageBox.Show($"Argument : {args[0]}", "Command-line Argument");
-
+                //MessageBox.Show($"Argument : {args[0]}", "Command-line Argument");
                 this.Show();
             }
             
@@ -68,7 +66,7 @@ namespace SmartTime
         }
         private void GitHubPageBtn(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tab_img_gallery");
+            System.Diagnostics.Process.Start("https://github.com/White-Frost-G/SmartTime/tree/main");
         }
     }
 
