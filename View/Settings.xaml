@@ -10,21 +10,53 @@
 
 
 
-        <ListBox x:Name="taskViewer" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,39,0,0" Background="#FFECF0F1" BorderBrush="#FF2980B9" Foreground="#FF2C3E50" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="310" Height="202"/>
+        <ListBox x:Name="taskViewer" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,39,0,0" Background="#FFECF0F1" BorderBrush="#FF2980B9" Foreground="#FF2C3E50" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="241" Height="202"/>
+        <Button Name ="AddAppBtn" Content="Add" HorizontalAlignment="Left" Margin="183,246,0,0" VerticalAlignment="Top" Height="23" Width="58" Click="AddAppActionBtn" Background="#FF3498DB" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
 
 
 
-        <Label Content="Main" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="DemiBold" Width="105" Height="24" Foreground="#FF2C3E50"/>
-        <Button Name ="AddAppBtn" Content="Add" HorizontalAlignment="Left" Margin="256,246,0,0" VerticalAlignment="Top" Height="23" Width="58" Click="AddAppActionBtn" Background="#FF3498DB" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
-        <Label Content="Max time per day" HorizontalAlignment="Left" Margin="325,52,0,0" VerticalAlignment="Top" Width="112" Height="25" RenderTransformOrigin="0.5,0.5" Foreground="#FF2C3E50"/>
-        <TextBox Name="WorkTimeL" HorizontalAlignment="Left" Margin="325,82,0,0" TextWrapping="Wrap" Text="01:30" VerticalAlignment="Top" Width="128" Height="21" FontSize="14" Background="#FFECF0F1" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
+        <Label Content="Waka Time Token" HorizontalAlignment="Left" Margin="256,161,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="DemiBold" Foreground="#FF2C3E50" Width="164"/>
+        <TextBox HorizontalAlignment="Left" Margin="265,200,0,0" VerticalAlignment="Top" Width="310" Height="21" FontSize="14" TextWrapping="Wrap" Name="WakaTimeTokenTB" Background="#FFECF0F1" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="395,10,0,0" VerticalAlignment="Top" Click="SaveConfigBtn" Width="50" Height="16" FontSize="8" Background="#FF3498DB" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
+        <Button x:Name ="RemoveAppBtn" Content="Remove" HorizontalAlignment="Left" Margin="120,246,0,0" VerticalAlignment="Top" Height="23" Width="58" Click="RemoveAppActionBtn" Background="#FF3498DB" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
 
+        <Label Content="Verifycation frequency" HorizontalAlignment="Left" Margin="256,95,0,0" VerticalAlignment="Top" Width="150" Height="24" RenderTransformOrigin="0.5,0.5" Foreground="#FF2C3E50"/>
+        <ComboBox x:Name ="VerifyFrequencyComboBox" HorizontalAlignment="Left" Margin="265,124,0,0" VerticalAlignment="Top" Width="120">
+            <TextBlock Text="1 sec"/>
+            <TextBlock Text="10 sec"/>
+            <TextBlock Text="30 sec"/>
+            <TextBlock Text="1 min"/>
+            <TextBlock Text="1.5 min"/>
+            <TextBlock Text="2 min"/>
+            <TextBlock Text="5 min"/>
+            <TextBlock Text="10 min"/>
+            <TextBlock Text="15 min"/>
+        </ComboBox>
+        <Grid x:Name="Shedule" Background="#FFE8E1E1" Margin="623,39,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="190" Width="167">
+            
+            
+            
+            <CheckBox x:Name="SunCheckBox" IsChecked="{Binding Path=WorkDays[0],UpdateSourceTrigger=PropertyChanged}" Content="SUN" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Width="55" Height="14" FontWeight="Bold"/>
+            <TextBox x:Name="SunTextBox" HorizontalAlignment="Left" Margin="75,10,0,0" TextWrapping="Wrap" Text="{Binding Path=WeekWorkTime[0],UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="80" Height="20" FontSize="14" Background="#FFECF0F1" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
 
+            <CheckBox x:Name="MonCheckBox" IsChecked="{Binding Path=WorkDays[1],UpdateSourceTrigger=PropertyChanged}" Content="MON" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="55" Height="14" FontWeight="Bold"/>
+            <TextBox x:Name="MonTextBox" HorizontalAlignment="Left" Margin="75,35,0,0" TextWrapping="Wrap" Text="{Binding Path=WeekWorkTime[1],UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="80" Height="20" FontSize="14" Background="#FFECF0F1" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
 
-        <Label Content="Waka Time" HorizontalAlignment="Left" Margin="10,286,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="DemiBold" Foreground="#FF2C3E50"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,325,0,0" VerticalAlignment="Top" Width="356" Height="21" FontSize="14" TextWrapping="Wrap" Name="WakaTimeTokenTB" Background="#FFECF0F1" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
-        <Button Content="Save" HorizontalAlignment="Left" Margin="480,19,0,0" VerticalAlignment="Top" Click="SaveConfigBtn" Width="50" Height="16" FontSize="8" Background="#FF3498DB" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
-        <Button x:Name ="RemoveAppBtn" Content="Remove" HorizontalAlignment="Left" Margin="193,246,0,0" VerticalAlignment="Top" Height="23" Width="58" Click="RemoveAppActionBtn" Background="#FF3498DB" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
+            <CheckBox x:Name="TueCheckBox" IsChecked="{Binding Path=WorkDays[2],UpdateSourceTrigger=PropertyChanged}" Content="TUE" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Width="55" Height="14" FontWeight="Bold"/>
+            <TextBox x:Name="TueTextBox" HorizontalAlignment="Left" Margin="75,60,0,0" TextWrapping="Wrap" Text="{Binding Path=WeekWorkTime[2],UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="80" Height="20" FontSize="14" Background="#FFECF0F1" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
+
+            <CheckBox x:Name="WedCheckBox" IsChecked="{Binding Path=WorkDays[3],UpdateSourceTrigger=PropertyChanged}" Content="WED" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="55" Height="14" FontWeight="Bold"/>
+            <TextBox x:Name="WedTextBox" HorizontalAlignment="Left" Margin="75,85,0,0" TextWrapping="Wrap" Text="{Binding Path=WeekWorkTime[3],UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="80" Height="20" FontSize="14" Background="#FFECF0F1" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
+
+            <CheckBox x:Name="ThuCheckBox" IsChecked="{Binding Path=WorkDays[4],UpdateSourceTrigger=PropertyChanged}" Content="THU" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" Width="55" Height="14" FontWeight="Bold"/>
+            <TextBox x:Name="ThuTextBox" HorizontalAlignment="Left" Margin="75,110,0,0" TextWrapping="Wrap" Text="{Binding Path=WeekWorkTime[4],UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="80" Height="20" FontSize="14" Background="#FFECF0F1" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
+
+            <CheckBox x:Name="FriCheckBox" IsChecked="{Binding Path=WorkDays[5],UpdateSourceTrigger=PropertyChanged}" Content="FRI" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Width="55" Height="14" FontWeight="Bold"/>
+            <TextBox x:Name="FriTextBox" HorizontalAlignment="Left" Margin="75,135,0,0" TextWrapping="Wrap" Text="{Binding Path=WeekWorkTime[5],UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="80" Height="20" FontSize="14" Background="#FFECF0F1" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
+
+            <CheckBox x:Name="SatCheckBox" IsChecked="{Binding Path=WorkDays[6],UpdateSourceTrigger=PropertyChanged}" Content="SAT" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" Width="55" Height="14" FontWeight="Bold"/>
+            <TextBox x:Name="SatTextBox" HorizontalAlignment="Left" Margin="75,160,0,0" TextWrapping="Wrap" Text="{Binding Path=WeekWorkTime[6],UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="80" Height="20" FontSize="14" Background="#FFECF0F1" BorderBrush="#FF2980B9" Foreground="#FF2C3E50"/>
+        </Grid>
 
 
     </Grid>

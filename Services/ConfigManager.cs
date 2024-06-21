@@ -60,15 +60,34 @@ namespace SmartTime.Services
     class Config
     {
         public string Token { get; set; }
-        //Seconds
-        public float WorkTime { get; set; }
+        /// <summary>
+        /// This property in seconds &lt;.
+        /// </summary>
+        public float[] WorkTimeSchedule { get; set; }
+        public bool[] weekWorkSchedule { get; set; }
+        public int VerificationFrequency { get; set; }
+        public int VerifComboBoxIndex { get; set; }
 
         public List<string> AppsForBlock { get; set; }
         public Config() 
         {
             Token = "Token";
-            WorkTime = 3600;
+            WorkTimeSchedule = new float[] { 360,360,360,360,360,360,360 };
+            weekWorkSchedule = new bool[] { true,true,true,true,true,true,true };
             AppsForBlock = new List<string>();
+            VerificationFrequency = 60;
+            VerificationFrequency = 60;
+        }
+        public float GetTodayWorkTime
+        {
+            get
+            {
+                int dayIndex = ((int)DateTime.Today.DayOfWeek);
+                if (weekWorkSchedule[dayIndex])
+                    return WorkTimeSchedule[dayIndex];
+                else
+                    return 0;
+            }
         }
     }
 }

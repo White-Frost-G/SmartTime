@@ -50,9 +50,13 @@ namespace SmartTime
 
         protected override void OnClosing(CancelEventArgs e)
         {
+#if DEBUG
+            base.OnClosing(e);
+#else
             base.OnClosing(e);
             this.Hide();
             e.Cancel = true;
+#endif
 
         }
 

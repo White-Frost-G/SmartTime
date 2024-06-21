@@ -119,6 +119,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppStats.cs" />
+    <Compile Include="Models\MainViewModel.cs" />
+    <Compile Include="Models\SettingsViewModel.cs" />
     <Compile Include="Services\ConfigManager.cs" />
     <Compile Include="Helpers\Base64Helper.cs" />
     <Compile Include="Models\DailyStat.cs" />

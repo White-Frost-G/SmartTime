@@ -1,4 +1,5 @@
-﻿using SmartTime.Services;
+﻿using SmartTime.Models;
+using SmartTime.Services;
 using System;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -10,16 +11,18 @@ using Color = System.Windows.Media.Color;
 
 namespace SmartTime.View
 {
-    /// <summary>
-    /// Interaction logic for MainView.xaml
-    /// </summary>
+    
+
+
     public partial class MainView : UserControl
     {
+        MainViewModel viewModel = new MainViewModel();
 
         public MainView()
         {
             InitializeComponent();
             LoadStatsAsync();
+            base.DataContext = viewModel;
         }
         private void UpdateStats(object sender, RoutedEventArgs e)
         {
@@ -31,27 +34,9 @@ namespace SmartTime.View
             float time = await WakaAuth.GetTodayTimeAsync();
             if(time.Equals(float.NaN))
             {
+                viewModel.NowWorkTimeValue = 0;
                 return;
             }
-
-            DateTime dateTime = new DateTime();
-            dateTime = dateTime.AddSeconds(time);
-            NowWorkTimeLabel.Content = "Your time: " + dateTime.ToLongTimeString();
-
-            //Temp
-            float needTime = ConfigManager.Config.WorkTime;
-            if(needTime - time >= 0)
-            {
-                DateTime dateTimeNeed = new DateTime();
-                dateTimeNeed = dateTimeNeed.AddSeconds(needTime - time);
-                NeedTimeToWorkLabel.Content = "Your need to finish: " + dateTimeNeed.ToLongTimeString();
-                NeedTimeToWorkLabel.Foreground = new SolidColorBrush(Color.FromRgb(44, 62, 80));
-                AppStats.finishedWork = false;
-                return;
-            }
-            NeedTimeToWorkLabel.Foreground = new SolidColorBrush(Color.FromRgb(46, 204, 113));
-            NeedTimeToWorkLabel.Content = "Finished";
-            AppStats.finishedWork = true;
         }
     }
 }

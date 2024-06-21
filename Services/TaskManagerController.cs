@@ -62,7 +62,7 @@ namespace SmartTime.Services
                 }
                 intesityNormalUpdates = someClosed ? +1 : -1;
                 VerifyViolation();
-                Thread.Sleep(15 * 60000);
+                Thread.Sleep(ConfigManager.Config.VerificationFrequency * 1000);
             }
             
         }
@@ -74,7 +74,7 @@ namespace SmartTime.Services
                 {
                     return;
                 }
-                Thread.Sleep(1 * 60000);
+                Thread.Sleep(ConfigManager.Config.VerificationFrequency * 2000 /3000);
                 bool someClosed = false;
                 var processes = Process.GetProcesses().ToList();
                 foreach (Process process in processes)
