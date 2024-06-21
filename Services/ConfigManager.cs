@@ -72,10 +72,9 @@ namespace SmartTime.Services
         public Config() 
         {
             Token = "Token";
-            WorkTimeSchedule = new float[] { 360,360,360,360,360,360,360 };
+            WorkTimeSchedule = new float[] { 0,0,0,0,0,0,0 };
             weekWorkSchedule = new bool[] { true,true,true,true,true,true,true };
             AppsForBlock = new List<string>();
-            VerificationFrequency = 60;
             VerificationFrequency = 60;
         }
         public float GetTodayWorkTime

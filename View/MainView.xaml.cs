@@ -37,6 +37,7 @@ namespace SmartTime.View
                 viewModel.NowWorkTimeValue = 0;
                 return;
             }
+            //viewModel.NowWorkTimeValue = time;
         }
     }
 }
